@@ -3,6 +3,12 @@ steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['build', '-o', 'hello', 'src/main.go']
 
+# Ensure that "go get" works
+- name: 'gcr.io/$PROJECT_ID/go'
+  args: ['get', 'golang.org/x/net/context']
+  env: ['GOPATH=/tmp']
+
+
 
 # build the container image
 - name: 'gcr.io/cloud-builders/docker'
